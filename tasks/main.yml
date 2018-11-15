@@ -1,0 +1,42 @@
+---
+- name: install the latest libselinux-python package
+  dnf:
+    name: libselinux-python
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: Create a global bashrc configuration
+  copy:
+    src: 'files/bash.bashrc'
+    dest: '/etc/bash.bashrc'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o=r'
+
+- name: Copy bashrc configuration to admin users
+  copy:
+    src: 'files/bashrc'
+    dest: '/home/{{ item }}/.bashrc'
+    owner: '{{ item }}'
+    group: wheel
+    mode: 'u=rw,g=r,o='
+  with_items: '{{ admins }}'
+
+- name: Copy vimrc configuration to root
+  copy:
+    src: 'files/vimrc'
+    dest: '/root/.vimrc'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o='
+
+- name: Copy vimrc configuration to admin users
+  copy:
+    src: 'files/vimrc'
+    dest: '/home/{{ item }}/.vimrc'
+    owner: '{{ item }}'
+    group: wheel
+    mode: 'u=rw,g=r,o='
+  with_items: "{{ admins }}"
+
+
