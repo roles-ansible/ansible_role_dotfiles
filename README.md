@@ -1,5 +1,6 @@
-# role_dotfiles
-Ansible role to deploy some dotfiles
+ dotfiles
+==========
+Ansible role to deploy some dotfiles which may be useful
 
 Affected files:
 ```ini
@@ -7,9 +8,19 @@ Affected files:
 .bashrc
 .vimrc
 ```
-needed vars:
+ needed vars:
+---------------
 ```ini
+# list all admins
 admins:
   - l3d
+```
+
+ Optional config:
+-----------------
+```ini
+# optional .bashrc commands
+bash:
+  bashrc: 'alias l="ls -all"'
 ```
 

@@ -1,6 +1,4 @@
 ---
 
-admins:
-  - l3d
 bash:
   bashrc: ''
