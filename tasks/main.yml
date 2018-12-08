@@ -39,4 +39,44 @@
     mode: 'u=rw,g=r,o='
   with_items: "{{ admins }}"
 
+- name: install nextcloud-client systemd unit file
+  template: 
+    src: nextcloud.j2
+    dest: /etc/systemd/system/nextcloud.service
+  when: bash.nextcloud
+
+- name: start nextcloud
+  systemd: 
+    state: started
+    name: nextcloud
+    daemon_reload: yes
+  when: bash.nextcloud
+
+- name: enable nextcloud: 
+  systemd:
+    name: nextcloud
+    enabled: yes
+    masked: no
+  when: bash.nextcloud
+
+- name: install networkmanager-applet systemd unit file
+  template: 
+    src: nm-applet.j2
+    dest: /etc/systemd/system/nm-applet.service
+  when: bash.nm
+
+- name: start nm-applet
+  systemd: 
+    state: started
+    name: nm-applet
+    daemon_reload: yes
+  when: bash.nm
+
+- name: enable nm-applet 
+  systemd:
+    name: nm-applet
+    enabled: yes
+    masked: no
+  when: bash.nm
+
 

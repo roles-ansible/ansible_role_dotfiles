@@ -2,3 +2,5 @@
 
 bash:
   bashrc: ''
+  nextcloud: false
+  nm: false
