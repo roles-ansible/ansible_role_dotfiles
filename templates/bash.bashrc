@@ -47,7 +47,7 @@ if [ -z "$BASHRCSOURCED" ]; then
     # and console windows
     # If you want to do so, just add e.g.
     if [ "$PS1" ]; then
-        PS1='$(if [[ $(id -u) -ne 0 ]];then echo "\[\033[01;33m\]"; else echo "\[\033[01;31m\]"; fi) $(if [[ $? == 0 ]]; then printf "\xE2\x9D\xA4"; fi) \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
+        PS1='{{ bash.ps1 }}'
     fi
     # to your custom modification shell script in /etc/profile.d/ directory
   fi
@@ -77,7 +77,7 @@ if [ -z "$BASHRCSOURCED" ]; then
        umask 022
     fi
 
-    SHELL=/bin/bash
+    SHELL={{ bash.shell }}
     # Only display echos from profile.d scripts if we are no login shell
     # and interactive - otherwise just process them to set envvars
     for i in /etc/profile.d/*.sh; do
@@ -110,5 +110,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+
+{% if bash.pwgen %}alias pwgen="/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 "{% endif %}
 
 # vim:ts=4:sw=4

@@ -5,8 +5,8 @@ Ansible role to deploy some dotfiles which may be useful
 Affected files:
 ```ini
 /etc/bash.bashrc
-.bashrc
-.vimrc
+~/.bashrc
+~/.vimrc
 ```
  needed vars:
 ---------------

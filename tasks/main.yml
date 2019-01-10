@@ -7,7 +7,7 @@
 
 - name: Create a global bashrc configuration
   copy:
-    src: 'files/bash.bashrc'
+    src: 'templates/bash.bashrc'
     dest: '/etc/bash.bashrc'
     owner: root
     group: root
@@ -15,7 +15,7 @@
 
 - name: Copy bashrc configuration to admin users
   template:
-    src: 'files/bashrc'
+    src: 'templates/bashrc'
     dest: '/home/{{ item }}/.bashrc'
     owner: '{{ item }}'
     group: wheel
@@ -24,7 +24,7 @@
 
 - name: Copy vimrc configuration to root
   copy:
-    src: 'files/vimrc'
+    src: 'templates/vimrc'
     dest: '/root/.vimrc'
     owner: root
     group: root
@@ -32,7 +32,7 @@
 
 - name: Copy vimrc configuration to admin users
   copy:
-    src: 'files/vimrc'
+    src: 'templates/vimrc'
     dest: '/home/{{ item }}/.vimrc'
     owner: '{{ item }}'
     group: wheel
