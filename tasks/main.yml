@@ -52,7 +52,7 @@
     daemon_reload: yes
   when: bash.nextcloud
 
-- name: enable nextcloud: 
+- name: enable nextcloud 
   systemd:
     name: nextcloud
     enabled: yes
