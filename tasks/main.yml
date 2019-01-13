@@ -18,7 +18,7 @@
     src: 'templates/bashrc'
     dest: '/home/{{ item }}/.bashrc'
     owner: '{{ item }}'
-    group: wheel
+    group: '{{ item }}'
     mode: 'u=rw,g=r,o='
   with_items: '{{ admins }}'
 
@@ -35,7 +35,7 @@
     src: 'templates/vimrc'
     dest: '/home/{{ item }}/.vimrc'
     owner: '{{ item }}'
-    group: wheel
+    group: '{{ item }}'
     mode: 'u=rw,g=r,o='
   with_items: "{{ admins }}"
 
