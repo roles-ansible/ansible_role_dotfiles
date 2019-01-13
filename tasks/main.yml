@@ -6,7 +6,7 @@
   when: ansible_distribution == "Fedora"
 
 - name: Create a global bashrc configuration
-  copy:
+  template:
     src: 'templates/bash.bashrc'
     dest: '/etc/bash.bashrc'
     owner: root

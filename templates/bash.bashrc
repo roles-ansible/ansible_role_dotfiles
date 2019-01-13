@@ -1,4 +1,5 @@
 # /etc/bashrc
+{% raw %}
 
 # System wide functions and aliases
 # Environment stuff goes in /etc/profile
@@ -7,6 +8,9 @@
 # are doing. It's much better to create a custom.sh shell script in
 # /etc/profile.d/ to make custom changes to your environment, as this
 # will prevent the need for merging in future updates.
+
+# This file may be overwritten by ansible. Please think about commiting
+# changes you want to keep persistent.
 
 # Prevent doublesourcing
 if [ -z "$BASHRCSOURCED" ]; then
@@ -43,6 +47,7 @@ if [ -z "$BASHRCSOURCED" ]; then
     # Turn on checkwinsize
     shopt -s checkwinsize
     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
+{% endraw %}
     # You might want to have e.g. tty in prompt (e.g. more virtual machines)
     # and console windows
     # If you want to do so, just add e.g.
@@ -51,8 +56,9 @@ if [ -z "$BASHRCSOURCED" ]; then
     fi
     # to your custom modification shell script in /etc/profile.d/ directory
   fi
+{% raw %}
 
-  if ! shopt -q login_shell ; then # We're not a login shell
+if ! shopt -q login_shell ; then # We're not a login shell
     # Need to redefine pathmunge, it gets undefined at the end of /etc/profile
     pathmunge () {
         case ":${PATH}:" in
@@ -76,8 +82,10 @@ if [ -z "$BASHRCSOURCED" ]; then
     else
        umask 022
     fi
+{% endraw %}
 
     SHELL={{ bash.shell }}
+
     # Only display echos from profile.d scripts if we are no login shell
     # and interactive - otherwise just process them to set envvars
     for i in /etc/profile.d/*.sh; do
