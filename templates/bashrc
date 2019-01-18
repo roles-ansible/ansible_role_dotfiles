@@ -14,7 +14,7 @@ export PATH
 
 PS1='$(if [[ $(id -u) -ne 0 ]];then echo "\[\033[01;33m\]"; else echo "\[\033[01;31m\]"; fi) $(if [[ $? == 0 ]]; then printf "\xE2\x9D\xA4"; fi) \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
 
-{{ bash.bashrc }}
+{{ bash['bashrc'] }}
 
 # User specific aliases and functions
 alias ll="ls -all"

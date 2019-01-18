@@ -1,4 +1,6 @@
 ---
+- debug: var=bash
+
 - name: install the latest libselinux-python package
   dnf:
     name: libselinux-python

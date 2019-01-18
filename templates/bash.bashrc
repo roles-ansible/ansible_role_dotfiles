@@ -47,16 +47,16 @@ if [ -z "$BASHRCSOURCED" ]; then
     # Turn on checkwinsize
     shopt -s checkwinsize
     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
-{% endraw %}
     # You might want to have e.g. tty in prompt (e.g. more virtual machines)
     # and console windows
     # If you want to do so, just add e.g.
     if [ "$PS1" ]; then
-        PS1='{{ bash.ps1 }}'
+{% endraw %}
+        PS1="{{ bash['keyboard'] }}"
+{% raw %}
     fi
     # to your custom modification shell script in /etc/profile.d/ directory
   fi
-{% raw %}
 
 if ! shopt -q login_shell ; then # We're not a login shell
     # Need to redefine pathmunge, it gets undefined at the end of /etc/profile
@@ -84,7 +84,8 @@ if ! shopt -q login_shell ; then # We're not a login shell
     fi
 {% endraw %}
 
-    SHELL={{ bash.shell }}
+    SHELL="{{ bash['shell'] }}"
+	{% raw %}
 
     # Only display echos from profile.d scripts if we are no login shell
     # and interactive - otherwise just process them to set envvars
@@ -118,7 +119,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+{% endraw %}
 
-{% if bash.pwgen %}alias pwgen="/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 "{% endif %}
+{% if bash['pwgen'] %}alias pwgen="/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 "{% endif %}
 
 # vim:ts=4:sw=4
