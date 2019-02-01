@@ -1,6 +1,6 @@
  dotfiles
 ==========
-![Travis Status](https://travis-ci.org/DO1JLR/role_dotfiles.svg?branch=master)
+[![Build Status](https://travis-ci.org/DO1JLR/role_dotfiles.svg?branch=master)](https://travis-ci.org/DO1JLR/role_dotfiles)
 
 Ansible role to deploy some dotfiles which may be useful
 
