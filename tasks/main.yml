@@ -23,6 +23,7 @@
     group: '{{ item }}'
     mode: 'u=rw,g=r,o='
   with_items: '{{ admins }}'
+  when: admins is defined
 
 - name: Copy vimrc configuration to root
   copy:
@@ -40,6 +41,7 @@
     group: '{{ item }}'
     mode: 'u=rw,g=r,o='
   with_items: "{{ admins }}"
+  when: admins is defined
 
 - name: install nextcloud-client systemd unit file
   template: 
