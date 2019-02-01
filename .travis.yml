@@ -6,6 +6,16 @@ env:
     version: 7
   - distribution: fedora
     version: 29
+  - distribution: fedora
+    version: 28
+  - distribution: fedora
+    version: 27
+  - distribution: fedora
+    version: 26
+  - distribution: fedora
+    version: 25
+  - distribution: fedora
+    version: 24
   - distribution: ubuntu
     version: bionic
   - distribution: ubuntu
@@ -34,4 +44,4 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-- 'sudo docker rm -f "$(cat ${container_id})"'
+  - 'sudo docker rm -f "$(cat ${container_id})"'
