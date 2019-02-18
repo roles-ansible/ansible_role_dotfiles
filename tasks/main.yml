@@ -2,12 +2,14 @@
 - debug: var=bash
 
 - name: install the latest libselinux-python package
+  become: yes
   dnf:
     name: libselinux-python
     state: latest
   when: ansible_distribution == "Fedora"
 
 - name: Create a global bashrc configuration
+  become: yes
   template:
     src: 'templates/bash.bashrc'
     dest: '/etc/bash.bashrc'
@@ -16,6 +18,7 @@
     mode: 'u=rw,g=r,o=r'
 
 - name: Copy bashrc configuration to admin users
+  become: yes
   template:
     src: 'templates/bashrc'
     dest: '/home/{{ item }}/.bashrc'
@@ -26,6 +29,7 @@
   when: admins is defined
 
 - name: Copy vimrc configuration to root
+  become: yes
   copy:
     src: 'templates/vimrc'
     dest: '/root/.vimrc'
@@ -34,6 +38,7 @@
     mode: 'u=rw,g=r,o='
 
 - name: Copy vimrc configuration to admin users
+  become: yes
   copy:
     src: 'templates/vimrc'
     dest: '/home/{{ item }}/.vimrc'
@@ -42,45 +47,4 @@
     mode: 'u=rw,g=r,o='
   with_items: "{{ admins }}"
   when: admins is defined
-
-- name: install nextcloud-client systemd unit file
-  template: 
-    src: nextcloud.j2
-    dest: /etc/systemd/system/nextcloud.service
-  when: bash.nextcloud
-
-- name: start nextcloud
-  systemd: 
-    state: started
-    name: nextcloud
-    daemon_reload: yes
-  when: bash.nextcloud
-
-- name: enable nextcloud 
-  systemd:
-    name: nextcloud
-    enabled: yes
-    masked: no
-  when: bash.nextcloud
-
-- name: install networkmanager-applet systemd unit file
-  template: 
-    src: nm-applet.j2
-    dest: /etc/systemd/system/nm-applet.service
-  when: bash.nm
-
-- name: start nm-applet
-  systemd: 
-    state: started
-    name: nm-applet
-    daemon_reload: yes
-  when: bash.nm
-
-- name: enable nm-applet 
-  systemd:
-    name: nm-applet
-    enabled: yes
-    masked: no
-  when: bash.nm
-
 
