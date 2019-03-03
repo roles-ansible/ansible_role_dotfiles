@@ -16,6 +16,10 @@ Affected files:
 # list all admins
 admins:
   - l3d
+
+# list of non-admins:
+user:
+  - ottojo
 ```
 
  Optional config:
