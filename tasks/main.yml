@@ -8,11 +8,19 @@
     state: latest
   when: ansible_distribution == "Fedora"
 
-- name: install ssh agent
+- name: install keychain to support ssh agent
   become: yes
   package: 
     name: keychain
     state: latest
+  when: ansible_distribution != "centos"
+
+- name: install keychain on centos
+  become: yes
+  yum:
+    name: https://centos.pkgs.org/7/psychotic-ninja-x86_64/keychain-2.7.1-1.el7.psychotic.noarch.rpm.html
+    state: present
+  when: ansible_distribution == "centos"
 
 - name: Create a global bashrc configuration
   become: yes
