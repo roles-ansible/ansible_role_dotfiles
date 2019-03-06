@@ -8,6 +8,12 @@
     state: latest
   when: ansible_distribution == "Fedora"
 
+- name: install ssh agent
+  become: yes
+  package: 
+    name: keychain
+    state: latest
+
 - name: Create a global bashrc configuration
   become: yes
   template:

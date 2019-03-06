@@ -1,7 +1,7 @@
 ---
 
 bash:
-  bashrc: ''
+  bashrc: 'eval $(keychain --eval --quiet id_ed25519)'
   nextcloud: false
   nm: false
   pwgen: true
