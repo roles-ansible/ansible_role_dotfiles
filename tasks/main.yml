@@ -1,5 +1,4 @@
 ---
-- debug: var=bash
 
 - name: install the latest libselinux-python package
   become: yes
@@ -13,14 +12,17 @@
   package: 
     name: keychain
     state: latest
-  when: ansible_distribution != "centos"
+  when: 
+   - ansible_os_family != 'RedHat'
 
 - name: install keychain on centos
   become: yes
   yum:
-    name: https://centos.pkgs.org/7/psychotic-ninja-x86_64/keychain-2.7.1-1.el7.psychotic.noarch.rpm.html
+    name: 
+      - https://centos.pkgs.org/7/psychotic-ninja-x86_64/keychain-2.7.1-1.el7.psychotic.noarch.rpm.html
+      - libselinux-python
     state: present
-  when: ansible_distribution == "centos"
+  when: ansible_os_family == 'RedHat'
 
 - name: Create a global bashrc configuration
   become: yes
