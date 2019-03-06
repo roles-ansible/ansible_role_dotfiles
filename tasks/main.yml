@@ -18,8 +18,8 @@
 - name: install keychain on centos
   become: yes
   yum:
-    name: 
-      - https://centos.pkgs.org/7/psychotic-ninja-x86_64/keychain-2.7.1-1.el7.psychotic.noarch.rpm.html
+    name:
+      - http://packages.psychotic.ninja/7/base/x86_64/RPMS//keychain-2.8.0-3.el7.psychotic.noarch.rpm 
       - libselinux-python
     state: present
   when: ansible_os_family == 'RedHat'
