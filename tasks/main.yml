@@ -5,7 +5,8 @@
   dnf:
     name: libselinux-python
     state: latest
-  when: ansible_distribution == "Fedora"
+  when: 
+   - ansible_distribution == "Fedora"
 
 - name: install keychain to support ssh agent
   become: yes
@@ -14,6 +15,7 @@
     state: latest
   when: 
    - ansible_os_family != 'RedHat'
+   - install_keychain
 
 - name: install keychain on centos
   become: yes
@@ -22,7 +24,9 @@
       - http://packages.psychotic.ninja/7/base/x86_64/RPMS//keychain-2.8.0-3.el7.psychotic.noarch.rpm 
       - libselinux-python
     state: present
-  when: ansible_os_family == 'RedHat'
+  when:
+   - ansible_os_family == 'RedHat'
+   - install_keychain
 
 - name: Create a global bashrc configuration
   become: yes

@@ -1,7 +1,11 @@
 ---
+# should we install keychain for ssh-add support?
+install_keychain: False
 
+# some bash variables
 bash:
-  bashrc: 'eval $(keychain --eval --quiet id_ed25519)'
+  bashrc: ''
+  keychain: 'eval $(keychain --eval --quiet id_ed25519)'
   nextcloud: false
   nm: false
   pwgen: true
