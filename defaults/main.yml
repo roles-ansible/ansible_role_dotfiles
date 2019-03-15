@@ -2,6 +2,8 @@
 # should we install keychain for ssh-add support?
 install_keychain: False
 
+extra_bashrc: ''
+
 # some bash variables
 bash:
   bashrc: ''
