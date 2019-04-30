@@ -90,3 +90,9 @@
   with_items: "{{ admins }}"
   when: admins is defined
 
+- name: delete root .bashrc
+  become: true
+  file:
+    state: absent
+    path: "/root/.bashrc"
+  when: allow_own_root_bashrc == False
