@@ -1,17 +1,15 @@
 ---
-# should we install keychain for ssh-add support?
+# should we install keychain for improved ssh-add support?
+# It is recomended for desctop users but completly useless for server installations...
 install_keychain: False
 
+# allow additional entys in the local .basrc file
 extra_bashrc: ''
 
-# some bash variables
-bash:
-  bashrc: ''
-  keychain: 'eval $(keychain --eval --quiet id_ed25519)'
-  nextcloud: false
-  nm: false
-  pwgen: true
-  shell: "/bin/bash"
-  keyboard: '$(if [[ $(id -u) -ne 0 ]];then echo "\[\033[01;33m\]"; else echo "\[\033[01;31m\]"; fi) $(if [[ $? == 0 ]]; then printf "\xE2\x9D\xA4"; fi) \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
-
+# if set to False the .bashrc of the root user will be deleted. 
+# all that he really need are some parametes of the global /etc/bash.bashrc file... 
 allow_own_root_bashrc: true 
+
+# enable version check for this role
+# (highly recomended for stupid users)
+submodules_versioncheck: true
