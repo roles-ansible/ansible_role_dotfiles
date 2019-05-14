@@ -1,6 +1,6 @@
  dotfiles
 ==========
-[![Build Status](https://travis-ci.org/DO1JLR/role_dotfiles.svg?branch=master)](https://travis-ci.org/DO1JLR/role_dotfiles)
+[![Build Status](https://travis-ci.org/chaos-bodensee/role_dotfiles.svg?branch=master)](https://travis-ci.org/chaos-bodensee/role_dotfiles)
 
 Ansible role to deploy some dotfiles which may be useful
 
@@ -18,7 +18,7 @@ admins:
   - l3d
 
 # list of non-admins:
-user:
+accounts:
   - ottojo
 ```
 
@@ -26,8 +26,7 @@ user:
 -----------------
 ```ini
 # optional .bashrc commands
-bash:
-  bashrc: 'alias l="ls -all"'
+extra_bashrc: 'alias l="ls -all"'
 ```
 
 Please have a look into ``defaults/main.yml`` for more configuration options!
