@@ -1,6 +1,7 @@
  dotfiles
 ==========
 [![Build Status](https://travis-ci.org/chaos-bodensee/role_dotfiles.svg?branch=master)](https://travis-ci.org/chaos-bodensee/role_dotfiles)
+[Ansible Galaxy](https://galaxy.ansible.com/do1jlr/role_dotfiles)
 
 Ansible role to deploy some dotfiles which may be useful
 
