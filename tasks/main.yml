@@ -11,19 +11,24 @@
   become: true
   slurp:
     src: "{{ playbook_version_path }}"
-  register: playbook_version 
+  register: playbook_version
   when: submodules_versioncheck|bool
   ignore_errors: yes
 
-- name: Print version
+- name: Print local version
   debug:
-    msg: "Remote playbook version: '{{ playbook_version.content | default('Y3VycmVudGx5IG5vdCBkZXBsb3llZAo=') | b64decode | string }}'. Local playbook version: '{{ playbook_version_number|string }}'."
+    msg: "Local role version: '{{ playbook_version_number|string }}'."
+  when: submodules_versioncheck|bool
+
+- name: Print remote version
+  debug:
+    msg: "Remote role  version: '{{ playbook_version.content | default('Y3VycmVudGx5IG5vdCBkZXBsb3llZAo=') | b64decode | string }}'."
   when: submodules_versioncheck|bool
 
 - name: Check if your version is outdated
   fail:
-    msg: "Your current ansible module has the version '{{ playbook_version_number }}' and is outdated. Please update it at least to version '{{ playbook_version.content | default('Y3VycmVudGx5IG5vdCBkZXBsb3llZAo=') | b64decode }}'!"
-  when: 
+    msg: "Your current ansible module has the version '{{ playbook_version_number }}' and is outdated. Please update it!"
+  when:
     - playbook_version.content|default("Mgo=")|b64decode|int - 1 >= playbook_version_number|int and submodules_versioncheck|bool
 
 - name: write new version to remote disk
@@ -38,15 +43,15 @@
   dnf:
     name: libselinux-python
     state: latest
-  when: 
+  when:
    - ansible_distribution == "Fedora"
 
 - name: install keychain to support ssh agent
   become: yes
-  package: 
+  package:
     name: keychain
     state: latest
-  when: 
+  when:
    - ansible_os_family != 'RedHat'
    - install_keychain|bool
 
@@ -54,7 +59,7 @@
   become: yes
   yum:
     name:
-      - http://packages.psychotic.ninja/7/base/x86_64/RPMS//keychain-2.8.0-3.el7.psychotic.noarch.rpm 
+      - http://packages.psychotic.ninja/7/base/x86_64/RPMS//keychain-2.8.0-3.el7.psychotic.noarch.rpm
       - libselinux-python
     state: present
   when:
@@ -128,4 +133,4 @@
   file:
     state: absent
     path: "/root/.bashrc"
-  when: allow_own_root_bashrc == False
+  when: not allow_own_root_bashrc
