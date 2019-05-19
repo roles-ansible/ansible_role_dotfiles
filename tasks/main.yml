@@ -1,6 +1,6 @@
 ---
 - name: Create directory for versionscheck
-  become: true
+  become: yes
   file:
     path: '/etc/ansible-version'
     state: directory
@@ -8,7 +8,7 @@
   when: submodules_versioncheck|bool
 
 - name: check playbook version
-  become: true
+  become: yes
   slurp:
     src: "{{ playbook_version_path }}"
   register: playbook_version
@@ -32,7 +32,7 @@
     - playbook_version.content|default("Mgo=")|b64decode|int - 1 >= playbook_version_number|int and submodules_versioncheck|bool
 
 - name: write new version to remote disk
-  become: true
+  become: yes
   copy:
     content: "{{ playbook_version_number }}"
     dest: "{{ playbook_version_path }}"
