@@ -129,8 +129,8 @@
   when: admins is defined
 
 - name: delete root .bashrc
-  become: true
+  become: yes
   file:
     state: absent
     path: "/root/.bashrc"
-  when: not allow_own_root_bashrc
+  when: not allow_own_root_bashrc|bool
