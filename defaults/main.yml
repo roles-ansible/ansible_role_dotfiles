@@ -13,3 +13,6 @@ allow_own_root_bashrc: true
 # enable version check for this role
 # (highly recomended for stupid users)
 submodules_versioncheck: true
+
+# show hidden files in ranger
+ranger_hidden_files: true

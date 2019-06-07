@@ -97,4 +97,27 @@
   file:
     state: absent
     path: "/root/.bashrc"
-  when: not allow_own_root_bashrc|bool
+  when: not allow_own_root_bashrc | bool
+
+- name: create .config/ranger/ directory
+  become: true
+  file:
+    path: "/home/{{ item }}/.config/ranger"
+    state: directory
+    recurse: yes
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  with_items: "{{ accounts }}"
+  when: ranger_hidden_files | bool
+
+- name: create .config/ranger/rc.conf file
+  become: true
+  template:
+    src: templates/ranger_rc.conf.j2
+    dest: "/home/{{ item }}/.config/ranger/rc.conf"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  with_items: "{{ accounts }}"
+  when: ranger_hidden_files | bool
+
+
