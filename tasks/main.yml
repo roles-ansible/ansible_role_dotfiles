@@ -128,4 +128,8 @@
     owner: "{{ item }}"
     group: "{{ item }}"
   with_items: "{{ accounts }}"
-  when: ranger_hidden_files | bool
+  when:
+    - ranger_hidden_files | bool
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'
