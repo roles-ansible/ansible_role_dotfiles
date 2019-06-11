@@ -2,6 +2,7 @@
 galaxy_info:
   author: L3D
   description: Deploy some dotfiles like .vimrc and .bashrc for all defined users
+  role_name: dotfiles
   license: "MIT"
   min_ansible_version: 2.3
   github_branch: master

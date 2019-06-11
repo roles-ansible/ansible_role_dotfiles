@@ -1,8 +1,16 @@
  dotfiles
 ==========
 [![Build Status](https://travis-ci.org/chaos-bodensee/role_dotfiles.svg?branch=master)](https://travis-ci.org/chaos-bodensee/role_dotfiles)
-[Ansible Galaxy](https://galaxy.ansible.com/do1jlr/role_dotfiles)
 
+<a href="https://galaxy.ansible.com/do1jlr/dotfiles"><img width="80px" src="https://galaxy.ansible.com/assets/galaxy-logo-02.svg"/></a>
+
+### Get it directly from Ansible Galaxy 
+```bash
+$ ansible-galaxy install do1jlr.dotfiles
+```
+
+Function of this role
+-----------------------
 Ansible role to deploy some dotfiles which may be useful
 
 Affected files:
