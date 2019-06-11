@@ -119,5 +119,3 @@
     group: "{{ item }}"
   with_items: "{{ accounts }}"
   when: ranger_hidden_files | bool
-
-
