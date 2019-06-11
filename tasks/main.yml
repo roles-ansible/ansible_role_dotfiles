@@ -59,7 +59,10 @@
     group: '{{ item }}'
     mode: 'u=rw,g=r,o='
   with_items: '{{ accounts }}'
-  when: accounts is defined
+  when:
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'
 
 - name: Copy vimrc configuration to root
   become: yes
@@ -79,7 +82,10 @@
     group: '{{ item }}'
     mode: 'u=rw,g=r,o='
   with_items: "{{ accounts }}"
-  when: accounts is defined
+  when:
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'
 
 - name: Copy vimrc configuration to admin users
   become: yes
@@ -108,7 +114,11 @@
     owner: "{{ item }}"
     group: "{{ item }}"
   with_items: "{{ accounts }}"
-  when: ranger_hidden_files | bool
+  when:
+    - ranger_hidden_files | bool
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'
 
 - name: create .config/ranger/rc.conf file
   become: true
