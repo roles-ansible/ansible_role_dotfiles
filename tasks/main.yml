@@ -50,6 +50,15 @@
   with_items: '{{ admins }}'
   when: admins is defined
 
+- name: Copy bashrc configuration to root
+  become: yes
+  template:
+    src: 'templates/bashrc'
+    dest: '/root/.bashrc'
+    owner: 'root'
+    group: 'root'
+    mode: 'u=rw,g=r,o='
+
 - name: Copy bashrc configuration to non admin users
   become: yes
   template:
