@@ -58,6 +58,7 @@
     owner: 'root'
     group: 'root'
     mode: 'u=rw,g=r,o='
+  when: allow_own_root_bashrc | bool
 
 - name: Copy bashrc configuration to non admin users
   become: yes

@@ -20,3 +20,4 @@ ranger_hidden_files: true
 # affected user accounts
 accounts:
   - "{{ ansible_user_id }}"
+
