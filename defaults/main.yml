@@ -21,3 +21,6 @@ ranger_hidden_files: true
 accounts:
   - "{{ ansible_user_id }}"
 
+# some additional aliases
+it_pull_alias: false
+git_typo_alias: true

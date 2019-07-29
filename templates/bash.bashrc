@@ -121,6 +121,13 @@ alias la='ls -A'
 alias l='ls -CF'
 {% endraw %}
 
+{% if git_typo_alias | bool -%}
+alias got='git'
+{% endif %}
+{% if git_pull_alias | bool -%}
+alias gitsubpull='git submodule foreach "(git checkout master; git pull)&"'
+{% endif %}
+
 {% if bash['pwgen'] %}alias pwgen="/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 "{% endif %}
 
 # vim:ts=4:sw=4
