@@ -24,3 +24,8 @@ accounts:
 # some additional aliases
 git_pull_alias: false
 git_typo_alias: true
+
+# default editor/visual
+install_editor: true
+dotfiles_default_editor: '/usr/bin/vim'
+dotfiles_default_visual: '/usr/bin/gedit'

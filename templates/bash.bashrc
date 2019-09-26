@@ -121,6 +121,10 @@ alias la='ls -A'
 alias l='ls -CF'
 {% endraw %}
 
+# default editor
+alias EDITOR='{{ dotfiles_default_editor }}'
+alias VISUAL='{{ dotfiles_default_visual }}'
+
 {% if git_typo_alias | bool -%}
 alias got='git'
 {% endif %}

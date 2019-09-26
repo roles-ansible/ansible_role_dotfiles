@@ -143,3 +143,12 @@
     - accounts is defined
     - accounts != ['root']
     - accounts != 'root'
+
+- name: Install vim and gedit
+  become: true
+  package:
+    name:
+      - vim
+      - gedit
+    state: present
+  when: install_editor | bool
