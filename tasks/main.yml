@@ -151,4 +151,6 @@
       - vim
       - gedit
     state: present
-  when: install_editor | bool
+  when:
+    - install_editor | bool
+    - ansible_distribution_version != '7' and ansible_distribution_release != 'wheezy' and ansible_machine != 'armv6l'
