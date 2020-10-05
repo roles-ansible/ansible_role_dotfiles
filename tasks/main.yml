@@ -144,12 +144,11 @@
     - accounts != ['root']
     - accounts != 'root'
 
-- name: Install vim and gedit
+- name: Install vim
   become: true
   package:
     name:
       - vim
-      - gedit
     state: present
   when:
     - install_editor | bool
