@@ -123,6 +123,7 @@
     recurse: yes
     owner: "{{ item }}"
     group: "{{ item }}"
+    mode: '0644'
   with_items: "{{ accounts }}"
   when:
     - ranger_hidden_files | bool
@@ -137,6 +138,7 @@
     dest: "/home/{{ item }}/.config/ranger/rc.conf"
     owner: "{{ item }}"
     group: "{{ item }}"
+    mode: '0644'
   with_items: "{{ accounts }}"
   when:
     - ranger_hidden_files | bool
