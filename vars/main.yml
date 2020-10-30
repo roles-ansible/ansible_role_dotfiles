@@ -1,2 +1,2 @@
-playbook_version_number: 2059 # should be over ninethousand
+playbook_version_number: 2060 # should be over ninethousand
 playbook_version_path: 'role_dotfiles_chaos-bodensee_github.version'

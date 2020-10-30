@@ -35,9 +35,9 @@ base__root_prompt: '\[\033[01;31m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[
 base__log_to_syslog: true
 
 # modify bash history
-history_control: 'ignoreboth'
-history_size: '-1'
-history_file_size: '-1'
+base__history_control: 'ignoreboth'
+base__history_size: '-1'
+base__history_file_size: '-1'
 
 # optional additional entries to bashrc
 base__additional_bashrc_lines: []
