@@ -16,7 +16,7 @@ if [ -x /usr/bin/dircolors ]; then
 {% endfor %}
 fi
 
-{% for alias in aliases %}
+{% for alias in base__aliases %}
 {% if not alias.color %}
     alias {{ alias.alias }}='{{ alias.command }}'
 {% endif%}
