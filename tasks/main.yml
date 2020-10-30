@@ -8,7 +8,7 @@
 - include_tasks: bashrc.yml
   when: base__modify_bashrc | bool
 
-name: Copy vimrc configuration to root
+- name: Copy vimrc configuration to root
   become: yes
   copy:
     src: 'templates/vimrc'
