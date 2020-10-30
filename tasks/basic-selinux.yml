@@ -1,0 +1,10 @@
+---
+- name: install the latest libselinux-python package
+  become: yes
+  dnf:
+    name: libselinux-python
+    state: latest
+  when:
+   - ansible_distribution == "Fedora"
+
+

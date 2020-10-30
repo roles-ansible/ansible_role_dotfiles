@@ -1,80 +1,14 @@
 ---
 - include_tasks: versioncheck.yml
-  when: submodules_versioncheck|bool
+  when: submodules_versioncheck | bool
 
-- name: install the latest libselinux-python package
-  become: yes
-  dnf:
-    name: libselinux-python
-    state: latest
-  when:
-   - ansible_distribution == "Fedora"
+- include_tasks: basic-selinux.yml
+  when: dotfiles__install_python-selinux | bool
 
-- name: install keychain to support ssh agent
-  become: yes
-  package:
-    name: keychain
-    state: latest
-  when:
-   - ansible_os_family != 'RedHat'
-   - install_keychain|bool
+- include_tasks: bashrc.yml
+  when: base__modify_bashrc | bool
 
-- name: install keychain on centos
-  become: yes
-  yum:
-    name:
-      - http://packages.psychotic.ninja/7/base/x86_64/RPMS//keychain-2.8.0-3.el7.psychotic.noarch.rpm
-      - libselinux-python
-    state: present
-  when:
-   - ansible_os_family == 'RedHat'
-   - install_keychain|bool
-
-- name: Create a global bashrc configuration
-  become: yes
-  template:
-    src: 'templates/bash.bashrc'
-    dest: '/etc/bash.bashrc'
-    owner: root
-    group: root
-    mode: 'u=rw,g=r,o=r'
-
-- name: Copy bashrc configuration to admin users
-  become: yes
-  template:
-    src: 'templates/bashrc'
-    dest: '/home/{{ item }}/.bashrc'
-    owner: '{{ item }}'
-    group: '{{ item }}'
-    mode: 'u=rw,g=r,o='
-  with_items: '{{ admins }}'
-  when: admins is defined
-
-- name: Copy bashrc configuration to root
-  become: yes
-  template:
-    src: 'templates/bashrc'
-    dest: '/root/.bashrc'
-    owner: 'root'
-    group: 'root'
-    mode: 'u=rw,g=r,o='
-  when: allow_own_root_bashrc | bool
-
-- name: Copy bashrc configuration to non admin users
-  become: yes
-  template:
-    src: 'templates/bashrc'
-    dest: '/home/{{ item }}/.bashrc'
-    owner: '{{ item }}'
-    group: '{{ item }}'
-    mode: 'u=rw,g=r,o='
-  with_items: '{{ accounts }}'
-  when:
-    - accounts is defined
-    - accounts != ['root']
-    - accounts != 'root'
-
-- name: Copy vimrc configuration to root
+name: Copy vimrc configuration to root
   become: yes
   copy:
     src: 'templates/vimrc'
@@ -97,24 +31,6 @@
     - accounts != ['root']
     - accounts != 'root'
 
-- name: Copy vimrc configuration to admin users
-  become: yes
-  copy:
-    src: 'templates/vimrc'
-    dest: '/home/{{ item }}/.vimrc'
-    owner: '{{ item }}'
-    group: '{{ item }}'
-    mode: 'u=rw,g=r,o='
-  with_items: "{{ admins }}"
-  when: admins is defined
-
-- name: delete root .bashrc
-  become: yes
-  file:
-    state: absent
-    path: "/root/.bashrc"
-  when: not allow_own_root_bashrc | bool
-
 - name: create .config/ranger/ directory
   become: true
   file:
@@ -126,7 +42,7 @@
     mode: '0644'
   with_items: "{{ accounts }}"
   when:
-    - ranger_hidden_files | bool
+    - base__ranger_hidden_files | bool
     - accounts is defined
     - accounts != ['root']
     - accounts != 'root'
@@ -141,17 +57,7 @@
     mode: '0644'
   with_items: "{{ accounts }}"
   when:
-    - ranger_hidden_files | bool
+    - base__ranger_hidden_files | bool
     - accounts is defined
     - accounts != ['root']
     - accounts != 'root'
-
-- name: Install vim
-  become: true
-  package:
-    name:
-      - vim
-    state: present
-  when:
-    - install_editor | bool
-    - ansible_distribution_version != '7' and ansible_distribution_release != 'wheezy' and ansible_machine != 'armv6l'
