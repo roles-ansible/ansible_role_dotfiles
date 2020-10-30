@@ -3,8 +3,7 @@
   become: yes
   dnf:
     name: libselinux-python
-    state: latest
+    state: present
   when:
    - ansible_distribution == "Fedora"
-
-
+  failed_when: false
