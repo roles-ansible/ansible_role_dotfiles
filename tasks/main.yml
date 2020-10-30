@@ -3,7 +3,7 @@
   when: submodules_versioncheck | bool
 
 - include_tasks: basic-selinux.yml
-  when: dotfiles__install_python-selinux | bool
+  when: dotfiles__install_python_selinux | bool
 
 - include_tasks: bashrc.yml
   when: base__modify_bashrc | bool

@@ -28,7 +28,7 @@ submodules_versioncheck: false
 
 # for some ansible features we need the python selinux package at fedora
 # disable it, if you don't want it
-dotfiles__install_python-selinux: true
+dotfiles__install_python_selinux: true
 
 # modify bashrc
 base__modify_bashrc: true
