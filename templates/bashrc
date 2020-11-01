@@ -14,14 +14,14 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 {% for alias in base__aliases %}
 {% if alias.color %}
-    alias {{ alias.alias }}='{{ alias.command }} --color=auto'
+    alias {{ alias.alias }}="{{ alias.command }} --color=auto"
 {% endif%}
 {% endfor %}
 fi
 
 {% for alias in base__aliases %}
 {% if not alias.color %}
-    alias {{ alias.alias }}='{{ alias.command }}'
+    alias {{ alias.alias }}="{{ alias.command }}"
 {% endif%}
 {% endfor %}
 

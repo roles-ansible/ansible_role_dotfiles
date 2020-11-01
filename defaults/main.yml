@@ -20,8 +20,8 @@ base__aliases:
   - { alias: "lz", command: "ls -Z", color: False }
   - { alias: "EDITOR", command: "/usr/bin/vim", color: False }
   - { alias: "VISUAL", command: "/usr/bin/gedit", color: False }
-  - { alias: "gitsubpull", command: 'git submodule foreach "(git checkout $(git symbolic-ref --short refs/remotes/origin/HEAD | sed "s@^origin/@@"); git pull)"', color: False }
-  - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 ", color: false }
+  - { alias: "gitsubpull", command: "git submodule foreach '(git checkout \\$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull)'", color: False }
+  - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\\\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 ", color: false }
 
 
 # enable bash completion
@@ -30,9 +30,6 @@ base__bash_completion_enabled: true
 # fancy promt
 base__user_prompt: '\[\033[01;33m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
 base__root_prompt: '\[\033[01;31m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
-
-# log terminal to syslog
-base__log_to_syslog: true
 
 # modify bash history
 base__history_control: 'ignoreboth'
