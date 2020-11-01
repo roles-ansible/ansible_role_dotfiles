@@ -31,7 +31,7 @@ shopt -s histappend
 HISTSIZE={{ base__history_size }}
 HISTFILESIZE={{ base__history_file_size }}
 
-{% for _row in base__additional_bashrc_lines | default() %}
+{% for _row in base__additional_user_bashrc_lines | default() %}
 {{ _row }}
 {% endfor %}
 
