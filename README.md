@@ -1,6 +1,7 @@
  dotfiles
 ==========
-[![Build Status](https://travis-ci.org/roles-ansible/ansible_role_dotfiles.svg?branch=master)](https://travis-ci.org/roles-ansible/role_dotfiles)
+[![MIT License](https://raw.githubusercontent.com/roles-ansible/ansible_role_dotfiles/master/.github/license.svg?sanitize=true)](https://github.com/roles-ansible/ansible_role_dotfiles/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/roles-ansible/ansible_role_dotfiles.svg?branch=master)](https://travis-ci.com/roles-ansible/ansible_role_dotfiles)
 [![Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_dotfiles/master/.github/license.svg?sanitize=true)](https://galaxy.ansible.com/do1jlr/dotfiles)
 
 ### Get it directly from Ansible Galaxy
