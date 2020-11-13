@@ -1,12 +1,2 @@
-# some bash variables
-bash:
-  bashrc: ''
-  keychain: 'eval $(keychain --eval --quiet id_ed25519)'
-  nextcloud: false
-  nm: false
-  pwgen: true
-  shell: "/bin/bash"
-  keyboard: '$(if [[ $(id -u) -ne 0 ]];then echo "\[\033[01;33m\]"; else echo "\[\033[01;31m\]"; fi) $(if [[ $? == 0 ]]; then printf "\xE2\x9D\xA4"; fi) \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
-
-playbook_version_number: 2056 # should be over ninethousand
+playbook_version_number: 2063 # should be over ninethousand
 playbook_version_path: 'role_dotfiles_chaos-bodensee_github.version'

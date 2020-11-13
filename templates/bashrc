@@ -9,18 +9,36 @@ fi
 PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+{% for alias in base__aliases %}
+{% if alias.color %}
+    alias {{ alias.alias }}="{{ alias.command }} --color=auto"
+{% endif%}
+{% endfor %}
+fi
 
-PS1='$(if [[ $(id -u) -ne 0 ]];then echo "\[\033[01;33m\]"; else echo "\[\033[01;31m\]"; fi) $(if [[ $? == 0 ]]; then printf "\xE2\x9D\xA4"; fi) \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
+{% for alias in base__aliases %}
+{% if not alias.color %}
+    alias {{ alias.alias }}="{{ alias.command }}"
+{% endif%}
+{% endfor %}
 
-{{ bash['bashrc'] }}
-{% if install_keychain %}
-{{ bash['keychain'] }}
+# hostory controll
+HISTCONTROL={{ base__history_control }}
+shopt -s histappend
+HISTSIZE={{ base__history_size }}
+HISTFILESIZE={{ base__history_file_size }}
+
+{% for _row in base__additional_user_bashrc_lines | default() %}
+{{ _row }}
+{% endfor %}
+
+{% for custom in base__custom_config %}
+{% if custom.user == item %}
+{{ custom.cmd }}
 {% endif %}
+{% endfor %}
 
-{{ extra_bashrc }}
-
-# User specific aliases and functions
-alias ll="ls -all"
-
+# vim:ts=4:sw=4
