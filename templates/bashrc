@@ -12,30 +12,30 @@ export PATH
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-{% for alias in base__aliases %}
+{% for alias in dotfiles__aliases %}
 {% if alias.color %}
     alias {{ alias.alias }}="{{ alias.command }} --color=auto"
 {% endif%}
 {% endfor %}
 fi
 
-{% for alias in base__aliases %}
+{% for alias in dotfiles__aliases %}
 {% if not alias.color %}
     alias {{ alias.alias }}="{{ alias.command }}"
 {% endif%}
 {% endfor %}
 
 # hostory controll
-HISTCONTROL={{ base__history_control }}
+HISTCONTROL={{ dotfiles__history_control }}
 shopt -s histappend
-HISTSIZE={{ base__history_size }}
-HISTFILESIZE={{ base__history_file_size }}
+HISTSIZE={{ dotfiles__history_size }}
+HISTFILESIZE={{ dotfiles__history_file_size }}
 
-{% for _row in base__additional_user_bashrc_lines | default() %}
+{% for _row in dotfiles__additional_user_bashrc_lines | default() %}
 {{ _row }}
 {% endfor %}
 
-{% for custom in base__custom_config %}
+{% for custom in dotfiles__custom_config %}
 {% if custom.user == item %}
 {{ custom.cmd }}
 {% endif %}

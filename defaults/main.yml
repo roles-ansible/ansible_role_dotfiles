@@ -8,10 +8,10 @@ submodules_versioncheck: false
 dotfiles__install_python_selinux: true
 
 # modify bashrc
-base__modify_bashrc: true
+dotfiles__modify_bashrc: true
 
 # list of aliases used in bashrc
-base__aliases:
+dotfiles__aliases:
   - { alias: "ls", command: "ls ", color: True }
   - { alias: "grep", command: "grep", color: True }
   - { alias: "ll", command: "ls -alF", color: False }
@@ -25,35 +25,35 @@ base__aliases:
 
 
 # enable bash completion
-base__bash_completion_enabled: true
+dotfiles__bash_completion_enabled: true
 
 # fancy promt
-base__user_prompt: '\[\033[01;33m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
-base__root_prompt: '\[\033[01;31m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
+dotfiles__user_prompt: '\[\033[01;33m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
+dotfiles__root_prompt: '\[\033[01;31m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
 
 # modify bash history
-base__history_control: 'ignoreboth'
-base__history_size: '-1'
-base__history_file_size: '-1'
+dotfiles__history_control: 'ignoreboth'
+dotfiles__history_size: '-1'
+dotfiles__history_file_size: '-1'
 
 # optional additional entries to /etc/bash.bashrc
-base__additional_bashrc_lines: []
+dotfiles__additional_bashrc_lines: []
 # - eval `foo`
 # - tmux new-session
 
 # optional additional entries to ~/.bashrc
-base__additional_user_bashrc_lines: []
+dotfiles__additional_user_bashrc_lines: []
 #  - eval $(keychain --eval --quiet id_ed25519)
 
 # optionally allow custom bashrc for root
-base__allow_own_root_bashrc: false
+dotfiles__allow_own_root_bashrc: false
 
 # otional custom commands
-base__custom_config: []
+dotfiles__custom_config: []
 #  - { user: "l3d", cmd: "eval $(keychain --eval --quiet id_ed25519)"
 
 # show hidden files in ranger
-base__ranger_hidden_files: true
+dotfiles__ranger_hidden_files: true
 
 accounts:
   - "{{ ansible_user_id }}"

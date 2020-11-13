@@ -6,7 +6,7 @@
   when: dotfiles__install_python_selinux | bool
 
 - include_tasks: bashrc.yml
-  when: base__modify_bashrc | bool
+  when: dotfiles__modify_bashrc | bool
 
 - name: Copy vimrc configuration to root
   become: yes
@@ -42,7 +42,7 @@
     mode: '0644'
   with_items: "{{ accounts }}"
   when:
-    - base__ranger_hidden_files | bool
+    - dotfiles__ranger_hidden_files | bool
     - accounts is defined
     - accounts != ['root']
     - accounts != 'root'
@@ -57,7 +57,7 @@
     mode: '0644'
   with_items: "{{ accounts }}"
   when:
-    - base__ranger_hidden_files | bool
+    - dotfiles__ranger_hidden_files | bool
     - accounts is defined
     - accounts != ['root']
     - accounts != 'root'

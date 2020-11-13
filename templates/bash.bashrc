@@ -9,20 +9,20 @@
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-{% for alias in base__aliases %}
+{% for alias in dotfiles__aliases %}
 {% if alias.color %}
     alias {{ alias.alias }}="{{ alias.command }} --color=auto"
 {% endif%}
 {% endfor %}
 fi
 
-{% for alias in base__aliases %}
+{% for alias in dotfiles__aliases %}
 {% if not alias.color %}
     alias {{ alias.alias }}="{{ alias.command }}"
 {% endif%}
 {% endfor %}
 
-{%if base__bash_completion_enabled %}
+{%if dotfiles__bash_completion_enabled %}
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -35,18 +35,18 @@ fi
 
 # fancy Prompt
 if [ $(id -u) -eq 0 ]; then
-    export PS1='{{ base__root_prompt }} '
+    export PS1='{{ dotfiles__root_prompt }} '
 else
-    export PS1='{{ base__user_prompt }} '
+    export PS1='{{ dotfiles__user_prompt }} '
 fi
 
 
-HISTCONTROL={{ base__history_control }}
+HISTCONTROL={{ dotfiles__history_control }}
 shopt -s histappend
-HISTSIZE={{ base__history_size }}
-HISTFILESIZE={{ base__history_file_size }}
+HISTSIZE={{ dotfiles__history_size }}
+HISTFILESIZE={{ dotfiles__history_file_size }}
 
-{% for _row in base__additional_bashrc_lines | default() %}
+{% for _row in dotfiles__additional_bashrc_lines | default() %}
 {{ _row }}
 {% endfor %}
 # vim:ts=4:sw=4

@@ -16,7 +16,7 @@
     owner: 'root'
     group: 'root'
     mode: 'u=rw,g=r,o='
-  when: not base__allow_own_root_bashrc | bool
+  when: not dotfiles__allow_own_root_bashrc | bool
 
 - name: Copy bashrc configuration to non admin users
   become: yes
