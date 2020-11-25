@@ -21,7 +21,7 @@ dotfiles__aliases:
   - { alias: "EDITOR", command: "/usr/bin/vim", color: False }
   - { alias: "VISUAL", command: "/usr/bin/gedit", color: False }
   - { alias: "gitsubpull", command: "git submodule foreach '(git checkout \\$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull)'", color: False }
-  - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\\\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 ", color: false }
+  - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels --ambiguous --symbols 95 1", color: false }
 
 
 # enable bash completion
