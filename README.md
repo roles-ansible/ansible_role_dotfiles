@@ -19,6 +19,8 @@ Affected files:
 ~/.bashrc
 ~/.vimrc
 ```
+*(and optionally some more, if enabled)*
+
  our variables:
 ---------------
 ```ini
@@ -43,50 +45,35 @@ dotfiles__aliases:
   - { alias: "lz", command: "ls -Z", color: False }
   - { alias: "EDITOR", command: "/usr/bin/vim", color: False }
   - { alias: "VISUAL", command: "/usr/bin/gedit", color: False }
-  - { alias: "gitsubpull", command: 'git submodule foreach "(git checkout $(git symbolic-ref --short refs/remotes/origin/HEAD | sed "s@^origin/@@"); git pull)"', color: False }
-  - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels  --symbols 42 | grep -v '0' | grep -v 'o' | grep -v 'O' | grep -v '\"' | grep -v 'I' | grep -v 'l' | grep -v '1' | grep -v '´' | grep -v '@'  | tail -1 ", color: false }
+  - { alias: "gitsubpull", command: "git submodule foreach '(git checkout \\$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull)'", color: False }
+  - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels --ambiguous --symbols 95 1", color: false }
 
 
 # enable bash completion
 dotfiles__bash_completion_enabled: true
 
 # fancy promt
-dotfiles__user_promt: '\[\033[01;33m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
+dotfiles__user_prompt: '\[\033[01;33m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
 dotfiles__root_prompt: '\[\033[01;31m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
 
-# log terminal to syslog
-dotfiles__log_to_syslog: true
-
 # modify bash history
-history_control: 'ignoreboth'
-history_size: '-1'
-history_file_size: '-1'
+dotfiles__history_control: 'ignoreboth'
+dotfiles__history_size: '-1'
+dotfiles__history_file_size: '-1'
 
-# optional additional entries to bashrc
+# optional additional entries to /etc/bash.bashrc
 dotfiles__additional_bashrc_lines: []
 # - eval `foo`
 # - tmux new-session
+
+# optional additional entries to ~/.bashrc
+dotfiles__additional_user_bashrc_lines: []
+#  - eval $(keychain --eval --quiet id_ed25519)
 
 # optionally allow custom bashrc for root
 dotfiles__allow_own_root_bashrc: false
 
 # otional custom commands
-dotfiles__additional_bashrc_lines: []
-# - eval `foo`
-# - tmux new-session
-
-# optionally allow custom bashrc for root
-dotfiles__allow_own_root_bashrc: false
-
-# otional custom commands
-dotfiles__custom_config: []
-#  - { user: "l3d", cmd: "eval $(keychain --eval --quiet id_ed25519)"
-
-# show hidden files in ranger
-dotfiles__ranger_hidden_files: true
-
-accounts:
-  - "{{ ansible_user_id }}"
 ```
 
 Please have a look into ``defaults/main.yml`` for more configuration options!
