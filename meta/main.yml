@@ -10,17 +10,11 @@ galaxy_info:
     - name: Archlinux
       versions: all
     - name: Debian
-      versions:
-        - stretch
-        - sid
+      versions: all
     - name: Ubuntu
-      versions:
-        - bionic
-        - cosmic
+      versions: all
     - name: Fedora
-      versions:
-        - 28
-        - 29
+      versions: all
   galaxy_tags:
     - dotfiles
     - bashrc
