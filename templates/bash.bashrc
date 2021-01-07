@@ -43,8 +43,17 @@ fi
 
 HISTCONTROL={{ dotfiles__history_control }}
 shopt -s histappend
+{% if ansible_os_family == 'Redhat' %}
+# HISTSIZE={{ dotfiles__history_size }}
+# HISTFILESIZE={{ dotfiles__history_file_size }}
+{% elif ansible_distribution == "CentOS" %}
+# HISTSIZE={{ dotfiles__history_size }}
+# HISTFILESIZE={{ dotfiles__history_file_size }}
+{% else %}
 HISTSIZE={{ dotfiles__history_size }}
 HISTFILESIZE={{ dotfiles__history_file_size }}
+{% endif %}
+
 
 {% for _row in dotfiles__additional_bashrc_lines | default() %}
 {{ _row }}
