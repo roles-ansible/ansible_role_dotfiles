@@ -1,6 +1,6 @@
 ---
 - name: install the latest libselinux-python package
-  be:come: true
+  become: true
   dnf:
     name: libselinux-python
     state: present
