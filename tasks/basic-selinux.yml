@@ -4,6 +4,5 @@
   dnf:
     name: libselinux-python
     state: present
-  when:
-    - ansible_distribution == "Fedora"
+  when: ansible_distribution == "Fedora"
   failed_when: false
