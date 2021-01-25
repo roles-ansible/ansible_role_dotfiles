@@ -9,7 +9,7 @@
   when: dotfiles__modify_bashrc | bool
 
 - name: Copy vimrc configuration to root
-  become: yes
+  become: true
   copy:
     src: 'templates/vimrc'
     dest: '/root/.vimrc'
@@ -18,7 +18,7 @@
     mode: 'u=rw,g=r,o='
 
 - name: Copy vimrc configuration to non admin users
-  become: yes
+  become: true
   copy:
     src: 'templates/vimrc'
     dest: '/home/{{ item }}/.vimrc'
@@ -36,7 +36,7 @@
   file:
     path: "/home/{{ item }}/.config/ranger"
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ item }}"
     group: "{{ item }}"
     mode: '0644'

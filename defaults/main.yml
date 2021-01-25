@@ -12,17 +12,16 @@ dotfiles__modify_bashrc: true
 
 # list of aliases used in bashrc
 dotfiles__aliases:
-  - { alias: "ls", command: "ls ", color: True }
-  - { alias: "grep", command: "grep", color: True }
-  - { alias: "ll", command: "ls -alF", color: False }
-  - { alias: "la", command: "ls -A", color: False }
-  - { alias: "l", command: "ls -CF", color: False }
-  - { alias: "lz", command: "ls -Z", color: False }
-  - { alias: "EDITOR", command: "/usr/bin/vim", color: False }
-  - { alias: "VISUAL", command: "/usr/bin/gedit", color: False }
-  - { alias: "gitsubpull", command: "git submodule foreach '(git checkout \\$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull)'", color: False }
+  - { alias: "ls", command: "ls ", color: true }
+  - { alias: "grep", command: "grep", color: true }
+  - { alias: "ll", command: "ls -alF", color: false }
+  - { alias: "la", command: "ls -A", color: false }
+  - { alias: "l", command: "ls -CF", color: false }
+  - { alias: "lz", command: "ls -Z", color: false }
+  - { alias: "EDITOR", command: "/usr/bin/vim", color: false }
+  - { alias: "VISUAL", command: "/usr/bin/gedit", color: false }
+  - { alias: "gitsubpull", command: "git submodule foreach '(git checkout \\$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull)'", color: false }
   - { alias: "pwgen", command: "/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels --ambiguous --symbols 95 1", color: false }
-
 
 # enable bash completion
 dotfiles__bash_completion_enabled: true
