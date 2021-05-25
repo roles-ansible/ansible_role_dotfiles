@@ -38,10 +38,9 @@
   file:
     path: "/home/{{ item }}/.config/ranger"
     state: directory
-    recurse: true
     owner: "{{ item }}"
     group: "{{ item }}"
-    mode: '0755'
+    recurse: true
   with_items: "{{ accounts }}"
   when:
     - dotfiles__ranger_hidden_files | bool
