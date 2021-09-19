@@ -4,6 +4,23 @@
 [![Build Status](https://travis-ci.com/roles-ansible/ansible_role_dotfiles.svg?branch=master)](https://travis-ci.com/roles-ansible/ansible_role_dotfiles)
 [![Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_dotfiles/master/.github/galaxy.svg?sanitize=true)](https://galaxy.ansible.com/do1jlr/dotfiles)
 
+ intended use
+---------------
+This role is designed to manage linux hosts with the following roles. This role here basically only focuses on deploying some dotfiles, [@DO1JLR](https://github.com/DO1JLR) decided they are needed at all hosts that are ansible managed.
+Other roles distribute ssh public keys, configure sshd, create users and manage sudo permissions or install a number of useful packages.
+
+A list of suggested roles to manage your linux host:
+ - [do1jlr.base](https://github.com/roles-ansible/ansible_role_base.git) *install some useful packages*
+ - [do1jlr.users](https://github.com/roles-ansible/ansible_role_users.git) *create user and manage sudoers*
+ - [do1jlr.auth](https://github.com/chaos-bodensee/role-ssh_authorized_keys.git) *deploy ssh pubkeys*
+ - [do1jlr.sshd](https://github.com/roles-ansible/ansible_role_sshd.git) *configure sshd*
+ - [do1jlr.dotfiles](https://github.com/roles-ansible/ansible_role_dotfiles) *(this one)*
+
+ Good to know:
+---------------
+The listed roles use the same variables to create accounts, admins and so on. But the roles have to run in the correct order to work properly.
+For example you can't deploy a ssh public key for a user that is not created.
+
 ### Get it directly from Ansible Galaxy
 ```bash
 $ ansible-galaxy install do1jlr.dotfiles
@@ -21,8 +38,10 @@ Affected files:
 ```
 *(and optionally some more, if enabled)*
 
- our variables:
+ variables:
 ---------------
+The variable ``accounts`` is very important, because this will manage which user accounts will be configured.
+
 ```ini
 # enable basic version check for this role
 # set it to true to use it (recomended)
