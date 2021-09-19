@@ -1,7 +1,7 @@
 ---
 - name: Create a global bashrc configuration
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/bash.bashrc'
     dest: '/etc/bash.bashrc'
     owner: root
@@ -10,7 +10,7 @@
 
 - name: Copy bashrc configuration to root
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/bashrc'
     dest: '/root/.bashrc'
     owner: 'root'
@@ -20,7 +20,7 @@
 
 - name: Copy bashrc configuration to non admin users
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/bashrc'
     dest: '/home/{{ item }}/.bashrc'
     owner: '{{ item }}'

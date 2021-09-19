@@ -1,18 +1,21 @@
 ---
-- include_tasks: versioncheck.yml
+- name: rin optional versionscheck
+  ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck | bool
 
-- include_tasks: basic-selinux.yml
+- name: try to install libselinux-python via dnf
+  ansible.builtin.include_tasks: basic-selinux.yml
   when:
     - dotfiles__install_python_selinux | bool
     - ansible_distribution == "Fedora"
 
-- include_tasks: bashrc.yml
+- name: deploy .bashrc
+  ansible.builtin.include_tasks: bashrc.yml
   when: dotfiles__modify_bashrc | bool
 
 - name: Copy vimrc configuration to root
   become: true
-  copy:
+  ansible.builtin.copy:
     src: 'templates/vimrc'
     dest: '/root/.vimrc'
     owner: root
@@ -21,7 +24,7 @@
 
 - name: Copy vimrc configuration to non admin users
   become: true
-  copy:
+  ansible.builtin.copy:
     src: 'templates/vimrc'
     dest: '/home/{{ item }}/.vimrc'
     owner: '{{ item }}'
@@ -35,7 +38,7 @@
 
 - name: create .config/ranger/ directory
   become: true
-  file:
+  ansible.builtin.file:
     path: "/home/{{ item }}/.config/ranger"
     state: directory
     owner: "{{ item }}"
@@ -50,7 +53,7 @@
 
 - name: create .config/ranger/rc.conf file
   become: true
-  template:
+  ansible.builtin.template:
     src: templates/ranger_rc.conf.j2
     dest: "/home/{{ item }}/.config/ranger/rc.conf"
     owner: "{{ item }}"

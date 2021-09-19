@@ -1,7 +1,7 @@
 ---
 - name: install the latest libselinux-python package
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: libselinux-python
     state: present
   when: ansible_distribution == "Fedora"
