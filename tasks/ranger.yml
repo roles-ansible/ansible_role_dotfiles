@@ -1,0 +1,30 @@
+---
+- name: create .config/ranger/ directory
+  become: true
+  ansible.builtin.file:
+    path: "/home/{{ item }}/.config/ranger"
+    state: directory
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    recurse: true
+  with_items: "{{ accounts }}"
+  when:
+    - dotfiles__ranger_hidden_files | bool
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'
+
+- name: create .config/ranger/rc.conf file
+  become: true
+  ansible.builtin.template:
+    src: templates/ranger_rc.conf.j2
+    dest: "/home/{{ item }}/.config/ranger/rc.conf"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: '0644'
+  with_items: "{{ accounts }}"
+  when:
+    - dotfiles__ranger_hidden_files | bool
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'

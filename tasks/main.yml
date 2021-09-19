@@ -13,55 +13,8 @@
   ansible.builtin.include_tasks: bashrc.yml
   when: dotfiles__modify_bashrc | bool
 
-- name: Copy vimrc configuration to root
-  become: true
-  ansible.builtin.copy:
-    src: 'templates/vimrc'
-    dest: '/root/.vimrc'
-    owner: root
-    group: root
-    mode: 'u=rw,g=r,o='
+- name: deploy vimrc
+  ansible.builtin.include_tasks: vimrc.yml
 
-- name: Copy vimrc configuration to non admin users
-  become: true
-  ansible.builtin.copy:
-    src: 'templates/vimrc'
-    dest: '/home/{{ item }}/.vimrc'
-    owner: '{{ item }}'
-    group: '{{ item }}'
-    mode: 'u=rw,g=r,o='
-  with_items: "{{ accounts }}"
-  when:
-    - accounts is defined
-    - accounts != ['root']
-    - accounts != 'root'
-
-- name: create .config/ranger/ directory
-  become: true
-  ansible.builtin.file:
-    path: "/home/{{ item }}/.config/ranger"
-    state: directory
-    owner: "{{ item }}"
-    group: "{{ item }}"
-    recurse: true
-  with_items: "{{ accounts }}"
-  when:
-    - dotfiles__ranger_hidden_files | bool
-    - accounts is defined
-    - accounts != ['root']
-    - accounts != 'root'
-
-- name: create .config/ranger/rc.conf file
-  become: true
-  ansible.builtin.template:
-    src: templates/ranger_rc.conf.j2
-    dest: "/home/{{ item }}/.config/ranger/rc.conf"
-    owner: "{{ item }}"
-    group: "{{ item }}"
-    mode: '0644'
-  with_items: "{{ accounts }}"
-  when:
-    - dotfiles__ranger_hidden_files | bool
-    - accounts is defined
-    - accounts != ['root']
-    - accounts != 'root'
+- name: deploy ranger config
+  ansible.builtin.include_tasks: ranger.yml

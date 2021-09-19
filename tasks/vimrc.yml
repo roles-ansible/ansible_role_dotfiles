@@ -1,0 +1,23 @@
+---
+- name: Copy vimrc configuration to root
+  become: true
+  ansible.builtin.copy:
+    src: 'templates/vimrc'
+    dest: '/root/.vimrc'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o='
+
+- name: Copy vimrc configuration to non admin users
+  become: true
+  ansible.builtin.copy:
+    src: 'templates/vimrc'
+    dest: '/home/{{ item }}/.vimrc'
+    owner: '{{ item }}'
+    group: '{{ item }}'
+    mode: 'u=rw,g=r,o='
+  with_items: "{{ accounts }}"
+  when:
+    - accounts is defined
+    - accounts != ['root']
+    - accounts != 'root'
