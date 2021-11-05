@@ -2,9 +2,9 @@
 extends: default
 
 rules:
-  # 280 chars should be enough, but don't fail if a line is longer
+  # 320 chars should be enough, but don't fail if a line is longer
   line-length:
-    max: 280
+    max: 320
     level: warning
   braces:
     level: warning

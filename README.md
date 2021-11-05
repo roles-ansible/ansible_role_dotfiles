@@ -1,7 +1,6 @@
  dotfiles
 ==========
 [![MIT License](https://raw.githubusercontent.com/roles-ansible/ansible_role_dotfiles/master/.github/license.svg?sanitize=true)](https://github.com/roles-ansible/ansible_role_dotfiles/blob/master/LICENSE)
-[![Build Status](https://travis-ci.com/roles-ansible/ansible_role_dotfiles.svg?branch=master)](https://travis-ci.com/roles-ansible/ansible_role_dotfiles)
 [![Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_dotfiles/master/.github/galaxy.svg?sanitize=true)](https://galaxy.ansible.com/do1jlr/dotfiles)
 
  intended use
@@ -99,13 +98,10 @@ Please have a look into ``defaults/main.yml`` for more configuration options!
 
 
 ### testing
-This role is tested with [these github-action](https://github.com/search?q=topic%3Acheck-ansible+topic%3Agithub-actions+org%3Aroles-ansible&type=Repositories) tests for different versions of differen linux systems. Linting is tested via travis-ci and the  [ansible-lint action](https://github.com/marketplace/actions/ansible-lint).
 If you want to find out more about our tests, please have a look at the github marketplace.
 
 | test status | Github Marketplace |
 | :---------  | :----------------  |
-| [![Travis Build Status](https://travis-ci.com/roles-ansible/ansible_role_dotfiles.svg?branch=master)](https://travis-ci.com/roles-ansible/ansible_role_dotfiles) | [.travis.yml](https://github.com/roles-ansible/ansible_role_dotfiles/blob/master/.travis.yml) |
-|||
 | [![Ansible Lint check](https://github.com/roles-ansible/ansible_role_dotfiles/workflows/Ansible%20Lint%20check/badge.svg)](https://github.com/roles-ansible/ansible_role_dotfiles/actions?query=workflow%3A%22Ansible+Lint+check%22) | [ansible-lint action](https://github.com/marketplace/actions/ansible-lint)
 | [![Ansible check debian:stable](https://github.com/roles-ansible/ansible_role_dotfiles/workflows/Ansible%20check%20debian:stable/badge.svg)](https://github.com/roles-ansible/ansible_role_dotfiles/actions?query=workflow%3A%22Ansible+check+debian%3Astable%22) | [ansible test with debian stable](https://github.com/marketplace/actions/check-ansible-debian-stable) |
 | [![Ansible check debian:latest](https://github.com/roles-ansible/ansible_role_dotfiles/workflows/Ansible%20check%20debian:latest/badge.svg)](https://github.com/roles-ansible/ansible_role_dotfiles/actions?query=workflow%3A%22Ansible+check+debian%3Alatest%22) | [ansible test with debian latest](https://github.com/marketplace/actions/check-ansible-debian-latest) |
