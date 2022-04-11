@@ -18,3 +18,7 @@
 
 - name: deploy ranger config
   ansible.builtin.include_tasks: ranger.yml
+
+- name: deploy .tmux.conf
+  ansible.builtin.include_tasks: tmux.yml
+  when: dotfiles__modify_tmux | bool
