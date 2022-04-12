@@ -54,5 +54,8 @@ dotfiles__custom_config: []
 # show hidden files in ranger
 dotfiles__ranger_hidden_files: true
 
+# configure tmux
+dotfiles__modify_tmux: true
+
 accounts:
   - "{{ ansible_user_id }}"
