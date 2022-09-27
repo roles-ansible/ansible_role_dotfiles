@@ -1,5 +1,5 @@
 ---
-- name: install the latest libselinux-python package
+- name: Install the latest libselinux-python package
   become: true
   ansible.builtin.dnf:
     name: libselinux-python
