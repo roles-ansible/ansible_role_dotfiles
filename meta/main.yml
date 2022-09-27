@@ -5,7 +5,6 @@ galaxy_info:
   role_name: dotfiles
   license: "MIT"
   min_ansible_version: 2.11
-  github_branch: main
   platforms:
     - name: Archlinux
       versions: all
