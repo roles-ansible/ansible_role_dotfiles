@@ -1,24 +1,24 @@
 ---
-- name: rin optional versionscheck
+- name: Run optional versionscheck
   ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck | bool
 
-- name: try to install libselinux-python via dnf
+- name: Try to install libselinux-python via dnf
   ansible.builtin.include_tasks: basic-selinux.yml
   when:
     - dotfiles__install_python_selinux | bool
     - ansible_distribution == "Fedora"
 
-- name: deploy .bashrc
+- name: Deploy .bashrc
   ansible.builtin.include_tasks: bashrc.yml
   when: dotfiles__modify_bashrc | bool
 
-- name: deploy vimrc
+- name: Deploy vimrc
   ansible.builtin.include_tasks: vimrc.yml
 
-- name: deploy ranger config
+- name: Deploy ranger config
   ansible.builtin.include_tasks: ranger.yml
 
-- name: deploy .tmux.conf
+- name: Deploy .tmux.conf
   ansible.builtin.include_tasks: tmux.yml
   when: dotfiles__modify_tmux | bool
