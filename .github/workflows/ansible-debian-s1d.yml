@@ -1,5 +1,5 @@
 ---
-name: Ansible check debian:sid
+name: Ansible check debian:s1d
 
 # yamllint disable-line rule:truthy
 on: [push, pull_request]

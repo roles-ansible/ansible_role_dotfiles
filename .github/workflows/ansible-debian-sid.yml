@@ -15,4 +15,4 @@ jobs:
       - name: 'ansible check with debian:sid'
         uses: roles-ansible/check-ansible-debian-sid-action@test
         with:
-          targets: "./"
+          targets: "ansible_role_dotfiles"
