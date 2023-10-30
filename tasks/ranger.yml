@@ -1,5 +1,5 @@
 ---
-- name: create .config/ranger/ directory
+- name: Create .config/ranger/ directory
   become: true
   ansible.builtin.file:
     path: "/home/{{ item }}/.config/ranger"
@@ -14,7 +14,7 @@
     - accounts != ['root']
     - accounts != 'root'
 
-- name: create .config/ranger/rc.conf file
+- name: Create .config/ranger/rc.conf file
   become: true
   ansible.builtin.template:
     src: templates/ranger_rc.conf.j2
