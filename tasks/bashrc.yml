@@ -26,7 +26,7 @@
     owner: '{{ item }}'
     group: '{{ item }}'
     mode: 'u=rw,g=r,o='
-  with_items: '{{ accounts }}'
+  loop: '{{ accounts }}'
   when:
     - accounts is defined
     - accounts != ['root']

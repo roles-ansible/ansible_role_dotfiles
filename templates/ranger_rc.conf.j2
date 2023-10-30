@@ -1,3 +1,5 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 #
-{% if dotfiles__ranger_hidden_files | bool %}set show_hidden true{% endif %}
+{% if dotfiles__ranger_hidden_files | bool %}
+set show_hidden true
+{% endif %}
